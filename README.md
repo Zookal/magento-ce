@@ -16,5 +16,5 @@ To generate `composer.json` and install magento for the first time run:
 ```
 composer require magento-hackathon/magento-composer-installer ~3.0
 composer require aydin-hassan/magento-core-composer-installer ~1.2
-composer require firegento/magento ~1.9.2.3
+composer require firegento/magento ~1.9.2.4
 ```

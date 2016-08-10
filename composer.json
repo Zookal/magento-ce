@@ -1,5 +1,6 @@
 {
-    "name": "magento/1.9.1.0",
+    "name": "magento/1.9.1.1",
+    "type": "magento-core",
     "license": "OSL-3.0",
     "description": "Magento CE"
 }

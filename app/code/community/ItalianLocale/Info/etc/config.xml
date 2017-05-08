@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- @copyright Copyright (c) 2013 Black Cat - Antonio Carboni - http://antoniocarboni.com -->
+<config>
+	<modules>
+		<ItalianLocale_Info>
+			<version>0.1.8.1.0</version>
+		</ItalianLocale_Info>
+	</modules>
+	<global>
+		<models>
+			<italianlocale>
+				<class>ItalianLocale_Info_Models</class>
+			</italianlocale>
+		</models>
+		<helpers>
+			<italianlocale>
+				<class>ItalianLocale_Info_Helper</class>
+			</italianlocale>
+		</helpers>
+		<blocks>
+			<italianlocale>
+				<class>ItalianLocale_Info_Block</class>
+			</italianlocale>
+		</blocks>
+	</global>
+</config>

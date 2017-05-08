@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- @copyright Copyright (c) 2013 Black Cat - Antonio Carboni - http://antoniocarboni.com -->
+<config>
+	<tabs>
+		<ItalianLocale_Info module="italianlocale" translate="label">
+			<label>Italian Localization</label>
+			<sort_order>150</sort_order>
+		</ItalianLocale_Info>
+	</tabs>
+    <sections>
+        <italianlocale_info translate="label" module="italianlocale">
+            <label>News e Info</label>
+            <tab>ItalianLocale_Info</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>1000</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general translate="label">
+                    <label>General</label>
+                    <frontend_type>text</frontend_type>
+					<frontend_model>italianlocale/adminhtml_info</frontend_model>
+					<iframe_url>http://ecommerce-italiano.it/community/index.php</iframe_url>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>                   
+                </general>                
+            </groups>
+        </italianlocale_info>
+    </sections>
+</config>

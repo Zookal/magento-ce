@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- @copyright Copyright (c) 2013 Black Cat - Antonio Carboni - http://antoniocarboni.com -->
+<adminhtml>
+	<acl>
+		<resources>
+			<admin>
+				<children>
+					<system>
+						<children>
+							<config>
+								<children>
+									<italianlocale_info module="italianlocale" translate="title">
+										<title>italianlocale</title>
+										<sort_order>150</sort_order>
+									</italianlocale_info>
+								</children>
+							</config>
+						</children>
+					</system>
+				</children>
+			</admin>
+		</resources>
+	</acl>
+</adminhtml>

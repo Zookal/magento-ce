@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- @copyright Copyright (c) 2014 Black Cat - Antonio Carboni - http://antoniocarboni.com -->
+<config>
+  <modules>
+      <ItalianLocale_Info>
+          <active>true</active>
+          <codePool>community</codePool>
+      </ItalianLocale_Info>
+  </modules>
+</config>

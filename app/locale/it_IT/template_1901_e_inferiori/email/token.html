@@ -1,0 +1,9 @@
+<!--@subject Benvenuto, {{var name}} @-->
+<!--@vars
+{"htmlescape var=$userName":"User name",
+"var $applicationName":"Application name",
+"var $status":"Token new status"}
+@-->
+
+Salve, {{htmlescape var=$userName}}<br /><br />
+La tua autorizzazione a <b>{{htmlescape var=$applicationName}}</b> è stata modificata in <b>{{htmlescape var=$status}}</b> dall'Admin team.<br /><br />

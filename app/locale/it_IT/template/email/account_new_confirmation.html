@@ -1,0 +1,52 @@
+<!--@subject Conferma Account per  {{var customer.name}} @-->
+<!--@vars
+{"store url=\"\"":"Store Url",
+"var logo_url":"Email Logo Image Url",
+"var logo_alt":"Email Logo Image Alt",
+"store url=\"customer/account/\"":"Customer Account Url",
+"htmlescape var=$customer.name":"Customer Name",
+"var customer.email":"Customer Email",
+"store url=\"customer/account/confirm/\" _query_id=$customer.id _query_key=$customer.confirmation _query_back_url=$back_url":"Confirmation Url",
+"htmlescape var=$customer.password":"Customer password"}
+@-->
+
+<!--@styles
+@-->
+
+{{template config_path="design/email/header"}}
+{{inlinecss file="email-inline.css"}}
+
+<table cellpadding="0" cellspacing="0" border="0">
+    <tr>
+        <td>
+            <table cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                    <td class="action-content">
+                        <h1>{{htmlescape var=$customer.name}},</h1>
+                        <p>La tua email {{var customer.email}} deve essere confermata prima di essere utilizzata per l'accesso al nostro negozio.</p>
+                        <p class="highlighted-text">
+                             Utilizza i seguenti parametri quando devi effettuare l'accesso::<br/>
+                            <strong>Email:</strong> {{var customer.email}}<br/>
+                            <strong>Password:</strong> {{htmlescape var=$customer.password}}
+                        </p>
+                        <p>Clicca qui per confermare l'account e fare subito il login (il link sar&agrave; valido una sola volta):</p>
+                        <table cellspacing="0" cellpadding="0" class="action-button" >
+                            <tr>
+                                <td>
+                                    <a href="{{store url="customer/account/confirm/" _query_id=$customer.id _query_key=$customer.confirmation _query_back_url=$back_url}}"><span>Conferma Account</span></a>
+                                </td>
+                            </tr>
+                        </table>
+                        <p>
+                            Se hai qualche domanda contattaci al nostro indirizzo email
+                            <a href="mailto:{{var store_email}}">{{var store_email}}</a>
+                            {{depend store_phone}} oppure al nostro numero <a href="tel:{{var phone}}">{{var store_phone}}</a>{{/depend}}.
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+{{template config_path="design/email/footer"}}

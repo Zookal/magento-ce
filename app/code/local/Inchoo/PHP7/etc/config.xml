@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Inchoo_PHP7>
+            <version>2.1.0</version>
+        </Inchoo_PHP7>
+    </modules>
+
+    <global>
+        <helpers>
+            <core>
+                <rewrite>
+                    <data>Inchoo_PHP7_Helper_Data</data>
+                </rewrite>
+            </core>
+        </helpers>
+    </global>
+</config>

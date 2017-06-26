@@ -37,6 +37,20 @@ class Mage_Paypal_Model_Ipn
     const DEFAULT_LOG_FILE = 'paypal_unknown_ipn.log';
 
     /**
+     * Default postback endpoint URL.
+     *
+     * @var string
+     */
+    const DEFAULT_POSTBACK_URL = 'https://ipnpb.paypal.com/cgi-bin/webscr';
+
+    /**
+     * Sandbox postback endpoint URL.
+     *
+     * @var string
+     */
+    const SANDBOX_POSTBACK_URL = 'https://ipnpb.sandbox.paypal.com/cgi-bin/webscr';
+
+    /**
      * Store order instance
      *
      * @var Mage_Sales_Model_Order
@@ -133,14 +147,15 @@ class Mage_Paypal_Model_Ipn
      */
     protected function _postBack(Zend_Http_Client_Adapter_Interface $httpAdapter)
     {
+        $url = $this->_getPostbackUrl();
+
         $postbackQuery = http_build_query($this->_request) . '&cmd=_notify-validate';
-        $postbackUrl = $this->_config->getPostbackUrl();
-        $this->_debugData['postback_to'] = $postbackUrl;
+        $this->_debugData['postback_to'] = $url;
 
         $httpAdapter->setConfig(array('verifypeer' => $this->_config->verifyPeer));
         $httpAdapter->write(
             Zend_Http_Client::POST,
-            $postbackUrl,
+            $url,
             '1.1',
             array('Connection: close'),
             $postbackQuery
@@ -174,6 +189,16 @@ class Mage_Paypal_Model_Ipn
             $this->_debugData['postback_result'] = $postbackResult;
             throw new Exception('PayPal IPN postback failure. See ' . self::DEFAULT_LOG_FILE . ' for details.');
         }
+    }
+
+    /**
+     * Get postback endpoint URL.
+     *
+     * @return string
+     */
+    protected function _getPostbackUrl()
+    {
+        return $this->_config->sandboxFlag ? self::SANDBOX_POSTBACK_URL : self::DEFAULT_POSTBACK_URL;
     }
 
     /**

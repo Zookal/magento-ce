@@ -554,6 +554,17 @@ class Mage_Tax_Model_Calculation extends Mage_Core_Model_Abstract
     }
 
     /**
+     * Get rate ids applicable for some address
+     *
+     * @param Varien_Object $request
+     * @return array
+     */
+    public function getApplicableRateIds($request)
+    {
+        return $this->_getResource()->getApplicableRateIds($request);
+    }
+
+    /**
      * Get the calculation process
      *
      * @param array $rates

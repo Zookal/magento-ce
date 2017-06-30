@@ -362,6 +362,35 @@ class Mage_Tax_Model_Resource_Calculation extends Mage_Core_Model_Resource_Db_Ab
     }
 
     /**
+     * Get rate ids applicable for some address
+     *
+     * @param Varien_Object $request
+     * @return array
+     */
+    function getApplicableRateIds($request)
+    {
+        $countryId = $request->getCountryId();
+        $regionId = $request->getRegionId();
+        $postcode = $request->getPostcode();
+
+        $select = $this->_getReadAdapter()->select()
+            ->from(array('rate' => $this->getTable('tax/tax_calculation_rate')), array('tax_calculation_rate_id'))
+            ->where('rate.tax_country_id = ?', $countryId)
+            ->where("rate.tax_region_id IN(?)", array(0, (int)$regionId));
+
+        $expr = $this->_getWriteAdapter()->getCheckSql(
+            'zip_is_range is NULL',
+            $this->_getWriteAdapter()->quoteInto(
+                "rate.tax_postcode IS NULL OR rate.tax_postcode IN('*', '', ?)",
+                $this->_createSearchPostCodeTemplates($postcode)
+            ),
+            $this->_getWriteAdapter()->quoteInto('? BETWEEN rate.zip_from AND rate.zip_to', $postcode)
+        );
+        $select->where($expr);
+        return $this->_getReadAdapter()->fetchCol($select);
+    }
+
+    /**
      * Calculate rate
      *
      * @param array $rates

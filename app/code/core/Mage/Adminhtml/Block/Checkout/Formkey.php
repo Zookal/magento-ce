@@ -19,43 +19,34 @@
  * needs please refer to http://www.magentocommerce.com for more information.
  *
  * @category    Mage
- * @package     Mage_Dataflow
+ * @package     Mage_Adminhtml
  * @copyright   Copyright (c) 2013 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-
 /**
- * Convert zend cache adapter
- *
- * @category   Mage
- * @package    Mage_Dataflow
- * @author      Magento Core Team <core@magentocommerce.com>
+ * Class Mage_Adminhtml_Block_Checkout_Formkey
  */
-class Mage_Dataflow_Model_Convert_Adapter_Zend_Cache extends Mage_Dataflow_Model_Convert_Adapter_Abstract
+class Mage_Adminhtml_Block_Checkout_Formkey extends Mage_Adminhtml_Block_Template
 {
-
-    public function getResource()
+    /**
+     * Check form key validation on checkout.
+     * If disabled, show notice.
+     *
+     * @return boolean
+     */
+    public function canShow()
     {
-        if (!$this->_resource) {
-            $this->_resource = Zend_Cache::factory($this->getVar('frontend', 'Core'), $this->getVar('backend', 'File'));
-        }
-        if ($this->_resource->getBackend() instanceof Zend_Cache_Backend_Static) {
-            throw new Exception(Mage::helper('dataflow')->__('Backend name "Static" not supported.'));
-        }
-        return $this->_resource;
+        return !Mage::getStoreConfigFlag('admin/security/validate_formkey_checkout');
     }
 
-    public function load()
+    /**
+     * Get url for edit Advanced -> Admin section
+     *
+     * @return string
+     */
+    public function getSecurityAdminUrl()
     {
-        $this->setData($this->getResource()->load($this->getVar('id')));
-        return $this;
+        return Mage::helper("adminhtml")->getUrl('adminhtml/system_config/edit/section/admin');
     }
-
-    public function save()
-    {
-        $this->getResource()->save($this->getData(), $this->getVar('id'));
-        return $this;
-    }
-
 }
